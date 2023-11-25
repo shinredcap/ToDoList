@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+        <input id="listItem" type="text">
+        <input id="button" type="submit">
+        <ul id="list">
+
+        </ul>
+    </form>
+    <script>
+        //　要素を取得
+        const form = document.getElementById("form");
+        const listItem = document.getElementById("listItem");
+        const addButton = document.getElementById("button");
+        const list = document.getElementById("list");
+
+        addButton.addEventListener("click",()=>{
+            // 入力内容をリストに追加し表示
+            const item = document.createElement("li");
+            item.textContent = listItem.value;
+            list.appendChild(item);
+            //　削除ボタンの追加
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "削除";
+            item.appendChild(deleteButton);
+            //　削除ボタンのイベント追加
+            deleteButton.addEventListener("click",()=>{
+                deleteB(item);
+            });
+            //フォームのリセット
+            form.reset();
+        });
+        //削除機能の定義
+        function deleteB(item){
+            list.removeChild(item);
+        } 
+    </script>
+</body>
+</html>
