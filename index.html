@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form id="form" action="#">
+    <form id="form" >
         <input id="text" type="text">
         <input id="submit" type="submit">   
         <ul id="list">
@@ -21,6 +21,7 @@
 
         function addItem(){
             //console.log(text.value);
+            event.preventDefault();
             const item = document.createElement("li");
             item.textContent = text.value;
             list.appendChild(item);
