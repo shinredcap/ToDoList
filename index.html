@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form id="form" >
-        <input id="text" type="text">
+    <h3>ToDoList</h3>
+    <form id="form" class="container" >
+        <input class="text" id="text" type="text">
         <input id="submit" type="submit">   
+    </form> 
         <ul id="list">
 
         </ul>
-    </form> 
+
     <script>
         const form = document.getElementById("form");
         const text = document.getElementById("text");
@@ -22,20 +25,29 @@
         function addItem(){
             //console.log(text.value);
             event.preventDefault();
-            const item = document.createElement("li");
-            item.textContent = text.value;
-            list.appendChild(item);
 
-            const deleteButton = document.createElement("button");
-            deleteButton.textContent = "delete";
-            item.appendChild(deleteButton);
-            
-            deleteButton.addEventListener("click",(e)=>{
-                //console.log(e.target.parentNode);
-                list.removeChild(e.target.parentNode);
-            });
+            if(text.value==""){
+                alert("入力されてません！");
+            }else{
+                const item = document.createElement("li");
+                item.textContent = text.value;
+                list.appendChild(item);
 
-            form.reset();
+                const deleteButton = document.createElement("img");
+                deleteButton.src = "trash.svg";
+                // 画像の幅と高さを設定（任意）
+                deleteButton.width = 32;
+                deleteButton.height = 32;
+                
+                //deleteButton.textContent = "delete";
+                item.appendChild(deleteButton);
+
+                deleteButton.addEventListener("click", (e) => {
+                    //console.log(e.target.parentNode);
+                    list.removeChild(e.target.parentNode);
+                });
+                form.reset();
+            }
         };
 
         submit.addEventListener("click",addItem,false);
